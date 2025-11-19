@@ -422,6 +422,7 @@ def create_deep_research_agent_tab(webui_manager: WebuiManager):
     webui_manager.init_deep_research_agent()
 
     # async def update_wrapper(mcp_file):
+    # async def update_wrapper(mcp_file):
     #     """Wrapper for handle_pause_resume."""
     #     update_dict = await update_mcp_server(mcp_file, webui_manager)
     #     yield update_dict
