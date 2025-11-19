@@ -359,18 +359,19 @@ async def update_mcp_server(mcp_file: str, webui_manager: WebuiManager):
     """
     Update the MCP server.
     """
-    if hasattr(webui_manager, "dr_agent") and webui_manager.dr_agent:
-        logger.warning("⚠️ Close controller because mcp file has changed!")
-        await webui_manager.dr_agent.close_mcp_client()
+    # if hasattr(webui_manager, "dr_agent") and webui_manager.dr_agent:
+    #     logger.warning("⚠️ Close controller because mcp file has changed!")
+    #     await webui_manager.dr_agent.close_mcp_client()
 
-    if not mcp_file or not os.path.exists(mcp_file) or not mcp_file.endswith('.json'):
-        logger.warning(f"{mcp_file} is not a valid MCP file.")
-        return None, gr.update(visible=False)
+    # if not mcp_file or not os.path.exists(mcp_file) or not mcp_file.endswith('.json'):
+    #     logger.warning(f"{mcp_file} is not a valid MCP file.")
+    #     return None, gr.update(visible=False)
 
-    with open(mcp_file, 'r') as f:
-        mcp_server = json.load(f)
+    # with open(mcp_file, 'r') as f:
+    #     mcp_server = json.load(f)
 
-    return json.dumps(mcp_server, indent=2), gr.update(visible=True)
+    # return json.dumps(mcp_server, indent=2), gr.update(visible=True)
+    return None, gr.update(visible=False)
 
 
 def create_deep_research_agent_tab(webui_manager: WebuiManager):
@@ -420,16 +421,16 @@ def create_deep_research_agent_tab(webui_manager: WebuiManager):
     webui_manager.add_components("deep_research_agent", tab_components)
     webui_manager.init_deep_research_agent()
 
-    async def update_wrapper(mcp_file):
-        """Wrapper for handle_pause_resume."""
-        update_dict = await update_mcp_server(mcp_file, webui_manager)
-        yield update_dict
+    # async def update_wrapper(mcp_file):
+    #     """Wrapper for handle_pause_resume."""
+    #     update_dict = await update_mcp_server(mcp_file, webui_manager)
+    #     yield update_dict
 
-    mcp_json_file.change(
-        update_wrapper,
-        inputs=[mcp_json_file],
-        outputs=[mcp_server_config, mcp_server_config]
-    )
+    # mcp_json_file.change(
+    #     update_wrapper,
+    #     inputs=[mcp_json_file],
+    #     outputs=[mcp_server_config, mcp_server_config]
+    # )
 
     dr_tab_outputs = list(tab_components.values())
     all_managed_inputs = set(webui_manager.get_components())
@@ -444,14 +445,14 @@ def create_deep_research_agent_tab(webui_manager: WebuiManager):
         yield update_dict
 
     # --- Connect Handlers ---
-    start_button.click(
-        fn=start_wrapper,
-        inputs=all_managed_inputs,
-        outputs=dr_tab_outputs
-    )
+    # start_button.click(
+    #     fn=start_wrapper,
+    #     inputs=all_managed_inputs,
+    #     outputs=dr_tab_outputs
+    # )
 
-    stop_button.click(
-        fn=stop_wrapper,
-        inputs=None,
-        outputs=dr_tab_outputs
-    )
+    # stop_button.click(
+    #     fn=stop_wrapper,
+    #     inputs=None,
+    #     outputs=dr_tab_outputs
+    # )

@@ -55,9 +55,9 @@ def create_agent_settings_tab(webui_manager: WebuiManager):
             override_system_prompt = gr.Textbox(label="Override system prompt", lines=4, interactive=True)
             extend_system_prompt = gr.Textbox(label="Extend system prompt", lines=4, interactive=True)
 
-    with gr.Group():
-        mcp_json_file = gr.File(label="MCP server json", interactive=True, file_types=[".json"])
-        mcp_server_config = gr.Textbox(label="MCP server", lines=6, interactive=True, visible=False)
+    # with gr.Group():
+    #     mcp_json_file = gr.File(label="MCP server json", interactive=True, file_types=[".json"])
+    #     mcp_server_config = gr.Textbox(label="MCP server", lines=6, interactive=True, visible=False)
 
     with gr.Group():
         with gr.Row():
@@ -231,8 +231,8 @@ def create_agent_settings_tab(webui_manager: WebuiManager):
         max_actions=max_actions,
         max_input_tokens=max_input_tokens,
         tool_calling_method=tool_calling_method,
-        mcp_json_file=mcp_json_file,
-        mcp_server_config=mcp_server_config,
+        # mcp_json_file=mcp_json_file,
+        # mcp_server_config=mcp_server_config,
     ))
     webui_manager.add_components("agent_settings", tab_components)
 
@@ -262,8 +262,8 @@ def create_agent_settings_tab(webui_manager: WebuiManager):
         update_dict = await update_mcp_server(mcp_file, webui_manager)
         yield update_dict
 
-    mcp_json_file.change(
-        update_wrapper,
-        inputs=[mcp_json_file],
-        outputs=[mcp_server_config, mcp_server_config]
-    )
+    # mcp_json_file.change(
+    #     update_wrapper,
+    #     inputs=[mcp_json_file],
+    #     outputs=[mcp_server_config, mcp_server_config]
+    # )
